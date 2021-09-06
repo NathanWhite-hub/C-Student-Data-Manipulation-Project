@@ -2,6 +2,7 @@
 #include <string>
 #include <memory>
 #include <array>
+#include <iostream>
 
 using namespace std;
 
@@ -18,7 +19,7 @@ private:
 	std::string emailAddress;
 	std::string degreeProgram;
 	int age;
-	//int daysToComplete[];
+	int daysToComplete[];
 
 public:
 
@@ -39,6 +40,9 @@ public:
 	void setAge(int aAge);
 	void setDaysToComplete(int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3);
 	void setDegreeProgram(std::string aDegreeProgram);
+
+	// Declaring print function
+	void print();
 
 	// Declaring constructor.
 	student(std::string aStudentID, std::string aFirstName, std::string aLastName, std::string aEmailAddress, int aAge, int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3, std::string aDegreeProgram);

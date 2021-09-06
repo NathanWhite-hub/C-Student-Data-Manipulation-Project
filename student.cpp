@@ -32,9 +32,9 @@ void student::setAge(int aAge) {
 	this->age = aAge;
 }
 void student::setDaysToComplete(int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3) {
-	//this->daysToComplete[0] = aDaysToComplete1;
-	//this->daysToComplete[1] = aDaysToComplete1;
-	//this->daysToComplete[2] = aDaysToComplete1;
+	this->daysToComplete[0] = aDaysToComplete1;
+	this->daysToComplete[1] = aDaysToComplete2;
+	this->daysToComplete[2] = aDaysToComplete3;
 }
 void student::setDegreeProgram(string aDegreeProgram) {
 	this->degreeProgram = aDegreeProgram;
@@ -56,9 +56,12 @@ int student::getAge() const {
 	return this->age;
 }
 int student::getDaysToComplete() const {
-	//return this->daysToComplete[2];
 	return 0;
 }
 string student::getDegreeProgram() const {
 	return this->degreeProgram;
+}
+
+void student::print() {
+	cout << studentID << " " << firstName << " " << lastName << " " << emailAddress << " " << age << " " << daysToComplete << " " << degreeProgram;
 }

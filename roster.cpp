@@ -3,24 +3,39 @@
 
 #include "roster.h"
 
-const string studentData[] = { "A1, John, Smith, John1989@gm ali.com, 20, 30, 35, 40, SECURITY",
-	"A2, Suzan, Erickson, Erickson_1990@gmailcom, 19, 50, 30, 40, NETWORK",
-	"A3, Jack, Napoli, The_lawyer99@yahoo.com, 19, 20, 40, 33, SOFTWARE",
-	"A4, Erin, Black, Erin.black@comcast.net, 22, 50, 58, 40, SECURITY",
-	"A5, John, Doe, jdoe@wgu.edu, 24, 20, 33, 40, SOFTWARE"
-};
-
 roster::roster() {
-	for (int i = 0; i <= 5; i++) {
-		// classRosterArray[i] = &studentData[i];
-	}
+	this->numStudents = 0;
+	this->students = nullptr;
 }
 
-void roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeProgram) {
+roster::roster(int numStudents) {
+	this->numStudents = numStudents;
+	students = new student * [numStudents];
+}
+
+void roster::convertData(string aStudentData, int currentStudent) {
+	vector<string> studentLines;
+	istringstream ss(aStudentData);
+	string word = "";
+
+	while (getline(ss, word, ',')) {
+		ss.ignore(1);
+		studentLines.push_back(word);
+	}
+
+	add(studentLines.at(0), studentLines.at(1), studentLines.at(2), studentLines.at(3),
+		stoi(studentLines.at(4)), stoi(studentLines.at(5)), stoi(studentLines.at(6)), stoi(studentLines.at(7)),
+		studentLines.at(8), currentStudent);
+}
+
+void roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeProgram, int currentStudent) {
+	this->students[currentStudent] = new student(studentID, firstName, lastName, emailAddress, age, daysInCourse1, daysInCourse2, daysInCourse3, degreeProgram);
 }
 
 void roster::printAll() {
-	for (int i = 0; i <= 5; i++) {
-		cout << classRosterArray[i] << endl;
+	cout << "Student ID " << "First Name " << "Last Name " << "Age " << "Days In Course " << "Degree Program" << endl;
+	for (int i = 0; i < numStudents; i++) {
+		this->students[i]->print();
+		cout << "\n___________________________________________________________" << endl;
 	}
 }
