@@ -1,6 +1,3 @@
-// This is a personal academic project. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-
 #include "roster.h"
 #include "student.h"
 
@@ -12,7 +9,7 @@ int main()
 	"A2, Suzan, Erickson, Erickson_1990@gmailcom, 19, 50, 30, 40, NETWORK",
 	"A3, Jack, Napoli, The_lawyer99@yahoo.com, 19, 20, 40, 33, SOFTWARE",
 	"A4, Erin, Black, Erin.black@comcast.net, 22, 50, 58, 40, SECURITY",
-	"A5, John, Doe, jdoe@wgu.edu, 24, 20, 33, 40, SOFTWARE"
+	"A5, Nathan, White, nwhi233@wgu.edu, 24, 20, 33, 40, SOFTWARE"
 	};
 
 	cout << "C867 Scripting and Programming Applications" << endl;
@@ -20,41 +17,66 @@ int main()
 	cout << "Student ID: 003663341" << endl;
 	cout << "Nathan White\n\n" << endl;
 
+	// Set classSize variable to the size of the studentData array.
 	int classSize = size(studentData);
 
+	// Create classRoster pointer of the new roster object with the argument classSize, which contains the size of the studentData array.
 	roster* classRoster = new roster(classSize);
 
+	// Print my neat ascii art of the WGU logo.
+	cout << "\n\n";
+	classRoster->printAsciiDesign();
+
+	/* Iterate over a for loop for the classSizeand do the following each loop:
+		1.) call convertData, passing in both the studentData with the current element (student) and the int i itself, which is refered to in convert data as currentStudent.
+	*/
 	for (int i = 0; i < classSize; i++) {
 		classRoster->convertData(studentData[i], i);
 	}
 
+	// The printAll() function is called on classRoster (see printAll() in roster.cpp).
 	classRoster->printAll();
 
+	cout << "\n\n";
+
+	// The printInvalidEmails() function is called with the parameter numStudents (the current number of students in the course.)
 	classRoster->printInvalidEmails(classRoster->numStudents);
 
 	cout << "\n\n";
 
+	/* For each of the students in classRoster, do the following :
+		1.) Call the printAverageDaysInCourse() function, and call the getStudentID() function for the "current student" (student[i])
+		(see printAverageDaysInCourse() in roster.cpp).
+	*/
 	for (int i = 0; i < classRoster->numStudents; i++) {
-		classRoster->printAverageDaysInCourse(classRoster->students[i]->getStudentID(), classSize);
+		classRoster->printAverageDaysInCourse(classRoster->students[i]->getStudentID());
 	}
 
 	cout << "\n\n";
 
+	/*
+		Call the printByDegreeProgram() function on the class roster, with the parameter of the enum value SOFTWARE.
+		(see printByDegreeProgram() in roster.cpp).
+	*/
 	classRoster->printByDegreeProgram(SOFTWARE);
 
 	cout << "\n\n";
 
+	// Call the remove() function with the parameter of the student ID "A3" (see remove() in roster.cpp).
 	classRoster->remove("A3");
-	//REMOVE A3 CLASS ROSTER
+
 	cout << "\n\n";
 
+	// Call printAll() again, which shows the student with studentID "A3" has been removed.
 	classRoster->printAll();
-	// PRINT ALL CLASS ROSTER
+
 	cout << "\n\n";
 
+	// Call the remove() function again, which will output an error message to console as the student has already been deleted.
 	classRoster->remove("A3");
-	// REMOVE A3 CLASS ROSTER EXPECTED: SHOULD PRINT MESSAGE SAYING NO SUCH STUDENT WAS FOUND
+
 	cout << "\n\n";
 
-	// USE DESTRUCTOR TO RELEASE MEMORY THAT WAS ALLOCATED DYNAMICALLY IN ROSTER
+	// Deconstruct the classRoster (see ~roster() in roster.cpp)
+	delete classRoster;
 }

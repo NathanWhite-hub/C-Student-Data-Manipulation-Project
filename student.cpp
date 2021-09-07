@@ -1,6 +1,3 @@
-// This is a personal academic project. Dear PVS-Studio, please check it.
-// PVS-Studio Static Code Analyzer for C, C++, C#, and Java: http://www.viva64.com
-
 #include "student.h"
 
 // Constructor
@@ -15,7 +12,7 @@ student::student(string aStudentID, string aFirstName, string aLastName, string 
 	setDegreeProgram(aDegreeProgram);
 }
 
-// Setters for each of the varaibles. Assigns variable to argument when called.
+// Setters for each of the variables. Assigns variable to argument when called.
 void student::setStudentID(string aStudentID) {
 	this->studentID = aStudentID;
 }
@@ -41,6 +38,7 @@ void student::setDegreeProgram(DegreeProgram aDegreeProgram) {
 	this->degreeProgram = aDegreeProgram;
 }
 
+// Getters for each of the variables. Returns the current object's information.
 string student::getStudentID() const {
 	return this->studentID;
 }
@@ -64,6 +62,12 @@ DegreeProgram student::getDegreeProgram() const {
 }
 
 void student::print() {
+	/*
+		The string strDegreeProgram is initialized.
+		A switch statement with the degreeProgram parameter is set and cases for each of the enum types are set.
+		If a case is triggered, then the strDegreeProgram variable is set to the correct string text of the enum value.
+		The strDegreeProgram is then the variable printed to console.
+	*/
 	string strDegreeProgram;
 	switch (degreeProgram)
 	{
@@ -79,5 +83,7 @@ void student::print() {
 	default:
 		break;
 	}
-	cout << studentID << " " << firstName << " " << lastName << " " << emailAddress << " " << age << " " << daysToComplete[0] << ", " << daysToComplete[1] << ", " << daysToComplete[2] << ", " << strDegreeProgram << endl;
+	cout << studentID << "\tFirst Name: " << firstName << "\tLast Name: " << lastName << "\tEmail Address: " << emailAddress
+		<< "\tAge: " << age << "\tdaysInCourse: {" << daysToComplete[0] << ", " << daysToComplete[1] << ", " << daysToComplete[2] << "} \tDegree Program: " << strDegreeProgram << endl;
+	cout << endl;
 }
