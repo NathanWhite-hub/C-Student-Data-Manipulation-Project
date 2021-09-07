@@ -4,6 +4,8 @@
 #include <array>
 #include <iostream>
 
+#include "degree.h"
+
 using namespace std;
 
 // This is a personal academic project. Dear PVS-Studio, please check it.
@@ -17,9 +19,9 @@ private:
 	std::string firstName;
 	std::string lastName;
 	std::string emailAddress;
-	std::string degreeProgram;
+	DegreeProgram degreeProgram;
 	int age;
-	int daysToComplete[];
+	int daysToComplete[3];
 
 public:
 
@@ -29,8 +31,8 @@ public:
 	std::string getLastName() const;
 	std::string getEmailAddress() const;
 	int getAge() const;
-	int getDaysToComplete() const;
-	std::string getDegreeProgram() const;
+	int* getDaysToComplete();
+	DegreeProgram getDegreeProgram() const;
 
 	// Declaring setters for each of the varaibles.
 	void setStudentID(std::string aStudentID);
@@ -38,12 +40,12 @@ public:
 	void setLastName(std::string aLastName);
 	void setEmailAddress(std::string aEmailAddress);
 	void setAge(int aAge);
-	void setDaysToComplete(int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3);
-	void setDegreeProgram(std::string aDegreeProgram);
+	void setDaysToComplete(int aDaysToComplete[]);
+	void setDegreeProgram(DegreeProgram aDegreeProgram);
 
 	// Declaring print function
 	void print();
 
 	// Declaring constructor.
-	student(std::string aStudentID, std::string aFirstName, std::string aLastName, std::string aEmailAddress, int aAge, int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3, std::string aDegreeProgram);
+	student(std::string aStudentID, std::string aFirstName, std::string aLastName, std::string aEmailAddress, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram);
 };

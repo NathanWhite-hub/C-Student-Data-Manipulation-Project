@@ -30,13 +30,31 @@ int main()
 
 	classRoster->printAll();
 
-	// PRINT ALL INVALID EMAILS CLASS ROSTER
-	/* LOOP THROUGH CLASSROSTERARRAY AND FOR EACH ELEMENT DO:
-		classRoster.printAverageDaysInCourse(current object's student id) USE A GETTER TO ACCESS THE STUDENT ID
-	*/
-	// PRINT BY DEGREE PROGRAM (SOFTWARE) CLASS ROSTER
+	classRoster->printInvalidEmails(classRoster->numStudents);
+
+	cout << "\n\n";
+
+	for (int i = 0; i < classRoster->numStudents; i++) {
+		classRoster->printAverageDaysInCourse(classRoster->students[i]->getStudentID(), classSize);
+	}
+
+	cout << "\n\n";
+
+	classRoster->printByDegreeProgram(SOFTWARE);
+
+	cout << "\n\n";
+
+	classRoster->remove("A3");
 	//REMOVE A3 CLASS ROSTER
+	cout << "\n\n";
+
+	classRoster->printAll();
 	// PRINT ALL CLASS ROSTER
+	cout << "\n\n";
+
+	classRoster->remove("A3");
 	// REMOVE A3 CLASS ROSTER EXPECTED: SHOULD PRINT MESSAGE SAYING NO SUCH STUDENT WAS FOUND
+	cout << "\n\n";
+
 	// USE DESTRUCTOR TO RELEASE MEMORY THAT WAS ALLOCATED DYNAMICALLY IN ROSTER
 }

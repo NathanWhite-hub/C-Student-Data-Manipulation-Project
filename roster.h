@@ -26,11 +26,11 @@ public:
 	//~roster();
 
 	void convertData(string aStudentData, int currentStudent);
-	void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, string degreeProgram, int currentStudent);
+	DegreeProgram convertStringToEnum(string aDegreeString);
+	void add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1, int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram, int currentStudent);
 	void remove(string studentID);
 	void printAll();
-	void printAverageDaysInCourse(string studentID);
-	void printInvalidEmails();
-	void printByDegreeProgram(string aDegreeProgram);
-	void createArray(string studentData);
+	void printAverageDaysInCourse(string studentID, int numStudents);
+	void printInvalidEmails(int numStudents);
+	void printByDegreeProgram(DegreeProgram aDegreeProgram);
 };

@@ -4,14 +4,14 @@
 #include "student.h"
 
 // Constructor
-student::student(string aStudentID, string aFirstName, string aLastName, string aEmailAddress, int aAge, int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3, string aDegreeProgram) {
+student::student(string aStudentID, string aFirstName, string aLastName, string aEmailAddress, int aAge, int aDaysToComplete[], DegreeProgram aDegreeProgram) {
 	// Calls each of the setter functions which sets the variables to the arguments passed in.
 	setStudentID(aStudentID);
 	setFirstName(aFirstName);
 	setLastName(aLastName);
 	setEmailAddress(aEmailAddress);
 	setAge(aAge);
-	setDaysToComplete(aDaysToComplete1, aDaysToComplete2, aDaysToComplete3);
+	setDaysToComplete(aDaysToComplete);
 	setDegreeProgram(aDegreeProgram);
 }
 
@@ -31,12 +31,13 @@ void student::setEmailAddress(string aEmailAddress) {
 void student::setAge(int aAge) {
 	this->age = aAge;
 }
-void student::setDaysToComplete(int aDaysToComplete1, int aDaysToComplete2, int aDaysToComplete3) {
-	this->daysToComplete[0] = aDaysToComplete1;
-	this->daysToComplete[1] = aDaysToComplete2;
-	this->daysToComplete[2] = aDaysToComplete3;
+void student::setDaysToComplete(int aDaysToComplete[]) {
+	for (int i = 0; i < 3; i++)
+	{
+		this->daysToComplete[i] = aDaysToComplete[i];
+	}
 }
-void student::setDegreeProgram(string aDegreeProgram) {
+void student::setDegreeProgram(DegreeProgram aDegreeProgram) {
 	this->degreeProgram = aDegreeProgram;
 }
 
@@ -55,13 +56,28 @@ string student::getEmailAddress() const {
 int student::getAge() const {
 	return this->age;
 }
-int student::getDaysToComplete() const {
-	return 0;
+int* student::getDaysToComplete() {
+	return daysToComplete;
 }
-string student::getDegreeProgram() const {
-	return this->degreeProgram;
+DegreeProgram student::getDegreeProgram() const {
+	return degreeProgram;
 }
 
 void student::print() {
-	cout << studentID << " " << firstName << " " << lastName << " " << emailAddress << " " << age << " " << daysToComplete << " " << degreeProgram;
+	string strDegreeProgram;
+	switch (degreeProgram)
+	{
+	case SECURITY:
+		strDegreeProgram = "SECURITY";
+		break;
+	case NETWORK:
+		strDegreeProgram = "NETWORK";
+		break;
+	case SOFTWARE:
+		strDegreeProgram = "SOFTWARE";
+		break;
+	default:
+		break;
+	}
+	cout << studentID << " " << firstName << " " << lastName << " " << emailAddress << " " << age << " " << daysToComplete[0] << ", " << daysToComplete[1] << ", " << daysToComplete[2] << ", " << strDegreeProgram << endl;
 }
